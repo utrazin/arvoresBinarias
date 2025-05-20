@@ -21,4 +21,13 @@ public class ArvoreBinaria {
         return 1 + contarNos(no.left) + contarNos(no.right);
     }
 
+    public void preOrdem(No no) {
+        if (no == null) {
+            return;
+        }
+        System.out.println(no.value);
+        preOrdem(no.left);
+        preOrdem(no.right);
+    }
+
 }
