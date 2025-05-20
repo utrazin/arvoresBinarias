@@ -7,5 +7,7 @@ public class Main {
         arvore.preOrdem(arvore.raiz);
         System.out.println("\nA árvore em Ordem:");
         arvore.emOrdem(arvore.raiz);
+        System.out.println("\nA árvore em Pós Ordem:");
+        arvore.posOrdem(arvore.raiz);
     }
 }

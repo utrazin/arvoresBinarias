@@ -38,4 +38,13 @@ public class ArvoreBinaria {
         System.out.println(no.value);
         emOrdem(no.right);
     }
+
+    public void posOrdem(No no) {
+        if (no == null) {
+            return;
+        }
+        posOrdem(no.left);
+        posOrdem(no.right);
+        System.out.println(no.value);
+    }
 }
