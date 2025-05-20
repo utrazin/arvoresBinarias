@@ -30,4 +30,12 @@ public class ArvoreBinaria {
         preOrdem(no.right);
     }
 
+    public void emOrdem(No no) {
+        if (no == null) {
+            return;
+        }
+        emOrdem(no.left);
+        System.out.println(no.value);
+        emOrdem(no.right);
+    }
 }
