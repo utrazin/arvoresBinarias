@@ -13,4 +13,12 @@ public class ArvoreBinaria {
         raiz.left.right = new No("E");
         raiz.right.right = new No("F");
     }
+
+    public int contarNos(No no) {
+        if (no == null) {
+            return 0;
+        }
+        return 1 + contarNos(no.left) + contarNos(no.right);
+    }
+
 }
