@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ArvoreBinaria {
     No raiz;
 
@@ -48,31 +51,24 @@ public class ArvoreBinaria {
         System.out.println(no.value);
     }
 
-    public int altura (No no) {
-        if (no == null) {
-            return 0;
-        }
-        int left = altura(no.left);
-        int right = altura(no.right);
-        return Math.max(left, right) + 1;
-    }
-
-    public void alturaNo (No no, int nivel) {
-        if (no == null) {
+    public void emLargura() {
+        if (raiz == null) {
             return;
         }
-        if (nivel == 1) {
-            System.out.println(no.value);
-        } else if (nivel > 1) {
-            alturaNo(no.left, nivel - 1);
-            alturaNo(no.right, nivel - 1);
-        }
-    }
 
-    public void emLargura() {
-        int h = altura(raiz);
-        for (int i = 1; i <= h; i++) {
-            alturaNo(raiz, i);
+        Queue<No> fila = new LinkedList<>();
+        fila.add(raiz);
+
+        while (!fila.isEmpty()) {
+            No atual = fila.poll();
+            System.out.printf(atual.value + "\n");
+
+            if (atual.left != null) {
+                fila.add(atual.left);
+            }
+            if (atual.right != null) {
+                fila.add(atual.right);
+            }
         }
     }
 }
