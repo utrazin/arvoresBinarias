@@ -47,4 +47,32 @@ public class ArvoreBinaria {
         posOrdem(no.right);
         System.out.println(no.value);
     }
+
+    public int altura (No no) {
+        if (no == null) {
+            return 0;
+        }
+        int left = altura(no.left);
+        int right = altura(no.right);
+        return Math.max(left, right) + 1;
+    }
+
+    public void alturaNo (No no, int nivel) {
+        if (no == null) {
+            return;
+        }
+        if (nivel == 1) {
+            System.out.println(no.value);
+        } else if (nivel > 1) {
+            alturaNo(no.left, nivel - 1);
+            alturaNo(no.right, nivel - 1);
+        }
+    }
+
+    public void emLargura() {
+        int h = altura(raiz);
+        for (int i = 1; i <= h; i++) {
+            alturaNo(raiz, i);
+        }
+    }
 }

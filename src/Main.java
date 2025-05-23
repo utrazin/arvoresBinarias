@@ -9,5 +9,7 @@ public class Main {
         arvore.emOrdem(arvore.raiz);
         System.out.println("\nA árvore em Pós Ordem:");
         arvore.posOrdem(arvore.raiz);
+        System.out.println("\nA árvore em Largura:");
+        arvore.emLargura();
     }
 }
