@@ -11,5 +11,6 @@ public class Main {
         arvore.posOrdem(arvore.raiz);
         System.out.println("\nA árvore em Largura:");
         arvore.emLargura();
+        System.out.println("\n" + arvore.contarNos(arvore.raiz) + " é o número de nós dessa árvore (Iterativo)");
     }
 }

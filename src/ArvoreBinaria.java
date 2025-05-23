@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class ArvoreBinaria {
     No raiz;
@@ -70,5 +71,29 @@ public class ArvoreBinaria {
                 fila.add(atual.right);
             }
         }
+    }
+
+    public int contarNos2(No raiz) {
+        if (raiz == null) {
+            return 0;
+        }
+
+        Stack<No> pilha = new Stack<>();
+        pilha.push(raiz);
+        int contador = 0;
+
+        while (!pilha.isEmpty()) {
+            No atual = pilha.pop();
+            contador++;
+
+            if (atual.right != null) {
+                pilha.push(atual.right);
+            }
+            if (atual.left != null) {
+                pilha.push(atual.left);
+            }
+        }
+
+        return contador;
     }
 }
