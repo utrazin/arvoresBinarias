@@ -160,4 +160,16 @@ public class ArvoreBinaria {
             System.out.println(pilha2.pop().value);
         }
     }
+
+    public int contarNosFolha(No no) {
+        if (no == null) {
+            return 0;
+        }
+
+        if (no.left == null && no.right == null) {
+            return 1;
+        }
+
+        return contarNosFolha(no.left) + contarNosFolha(no.right);
+    }
 }
