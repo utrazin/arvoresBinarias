@@ -78,19 +78,19 @@ public class ArvoreBinaria {
             return 0;
         }
 
-        Stack<No> pilha = new Stack<>();
-        pilha.push(raiz);
+        Queue<No> fila = new LinkedList<>();
+        fila.add(raiz);
         int contador = 0;
 
-        while (!pilha.isEmpty()) {
-            No atual = pilha.pop();
+        while (!fila.isEmpty()) {
+            No atual = fila.poll();
             contador++;
 
-            if (atual.right != null) {
-                pilha.push(atual.right);
-            }
             if (atual.left != null) {
-                pilha.push(atual.left);
+                fila.add(atual.left);
+            }
+            if (atual.right != null) {
+                fila.add(atual.right);
             }
         }
 
@@ -109,7 +109,6 @@ public class ArvoreBinaria {
             No noAtual = pilha.pop();
             System.out.println(noAtual.value);
 
-            // Primeiro empilha o filho da direita, depois o da esquerda
             if (noAtual.right != null) {
                 pilha.push(noAtual.right);
             }
