@@ -96,4 +96,26 @@ public class ArvoreBinaria {
 
         return contador;
     }
+
+    public void preOrdem2(No raiz) {
+        if (raiz == null) {
+            return;
+        }
+
+        Stack<No> pilha = new Stack<>();
+        pilha.push(raiz);
+
+        while (!pilha.isEmpty()) {
+            No noAtual = pilha.pop();
+            System.out.println(noAtual.value);
+
+            // Primeiro empilha o filho da direita, depois o da esquerda
+            if (noAtual.right != null) {
+                pilha.push(noAtual.right);
+            }
+            if (noAtual.left != null) {
+                pilha.push(noAtual.left);
+            }
+        }
+    }
 }
