@@ -14,5 +14,7 @@ public class Main {
         System.out.println("\n" + arvore.contarNos(arvore.raiz) + " é o número de nós dessa árvore (Iterativo)");
         System.out.println("\nA árvore em Pré Ordem (Iterativo):");
         arvore.preOrdem2(arvore.raiz);
+        System.out.println("\nA árvore em Ordem (Iterativo):");
+        arvore.emOrdem2(arvore.raiz);
     }
 }

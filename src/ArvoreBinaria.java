@@ -118,4 +118,20 @@ public class ArvoreBinaria {
             }
         }
     }
+
+    public void emOrdem2(No raiz) {
+        Stack<No> pilha = new Stack<>();
+        No atual = raiz;
+
+        while (atual != null || !pilha.isEmpty()) {
+            while (atual != null) {
+                pilha.push(atual);
+                atual = atual.left;
+            }
+            atual = pilha.pop();
+            System.out.println(atual.value);
+
+            atual = atual.right;
+        }
+    }
 }
