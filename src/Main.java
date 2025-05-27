@@ -16,5 +16,7 @@ public class Main {
         arvore.preOrdem2(arvore.raiz);
         System.out.println("\nA árvore em Ordem (Iterativo):");
         arvore.emOrdem2(arvore.raiz);
+        System.out.println("\nA árvore em Pós Ordem (Iterativo):");
+        arvore.posOrdem2(arvore.raiz);
     }
 }

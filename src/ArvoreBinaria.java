@@ -134,4 +134,31 @@ public class ArvoreBinaria {
             atual = atual.right;
         }
     }
+
+    public void posOrdem2(No raiz) {
+        if (raiz == null) {
+            return;
+        }
+
+        Stack<No> pilha1 = new Stack<>();
+        Stack<No> pilha2 = new Stack<>();
+
+        pilha1.push(raiz);
+
+        while (!pilha1.isEmpty()) {
+            No no = pilha1.pop();
+            pilha2.push(no);
+
+            if (no.left != null) {
+                pilha1.push(no.left);
+            }
+            if (no.right != null) {
+                pilha1.push(no.right);
+            }
+        }
+
+        while (!pilha2.isEmpty()) {
+            System.out.println(pilha2.pop().value);
+        }
+    }
 }
