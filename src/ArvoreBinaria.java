@@ -185,7 +185,7 @@ public class ArvoreBinaria {
         }
     }
 
-    public int contarNosFolha(No no) {
+    public int contarNosFolha2(No no) {
         if (no == null) {
             return 0;
         }
@@ -210,31 +210,15 @@ public class ArvoreBinaria {
         return folhas;
     }
 
-    public int contarNosFolha2(No raiz) {
-        if (raiz == null) {
+    public int contarNosFolha(No no) {
+        if (no == null) {
             return 0;
         }
 
-        Queue<No> fila = new LinkedList<>();
-        fila.add(raiz);
-        int contador = 0;
-
-        while (!fila.isEmpty()) {
-            No atual = fila.poll();
-
-            if (atual.left == null && atual.right == null) {
-                contador++;
-            }
-
-            if (atual.left != null) {
-                fila.add(atual.left);
-            }
-
-            if (atual.right != null) {
-                fila.add(atual.right);
-            }
+        if (no.left == null && no.right == null) {
+            return 1;
         }
 
-        return contador;
+        return contarNosFolha(no.left) + contarNosFolha(no.right);
     }
 }
