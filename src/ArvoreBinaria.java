@@ -190,11 +190,24 @@ public class ArvoreBinaria {
             return 0;
         }
 
-        if (no.left == null && no.right == null) {
-            return 1;
+        Queue<No> fila = new LinkedList<>();
+        fila.add(raiz);
+        int folhas = 0;
+
+        while (!fila.isEmpty()) {
+            No atual = fila.poll();
+            if (atual.left == null && atual.right == null) {
+                folhas++;
+            }
+            if (atual.left != null) {
+                fila.add(atual.left);
+            }
+            if (atual.right != null) {
+                fila.add(atual.right);
+            }
         }
 
-        return contarNosFolha(no.left) + contarNosFolha(no.right);
+        return folhas;
     }
 
     public int contarNosFolha2(No raiz) {
