@@ -12,7 +12,8 @@ public class Main {
         arvore.posOrdem(arvore.raiz);
         System.out.println("\nA árvore em Largura:");
         arvore.emLargura();
-        System.out.println("\n" + arvore.contarNos2(arvore.raiz) + " é o número de nós dessa árvore (Iterativo)");
+        System.out.println("\n" + arvore.contarNosFila(arvore.raiz) + " é o número de nós dessa árvore (Fila)");
+        System.out.println("\n" + arvore.contarNosPilha(arvore.raiz) + " é o número de nós dessa árvore (Pilha)");
         System.out.println("\n" + arvore.contarNosFolha2(arvore.raiz) + " é o número de nós folha dessa árvore (Iterativo)");
         System.out.println("\nA árvore em Pré Ordem (Iterativo):");
         arvore.preOrdem2(arvore.raiz);

@@ -73,7 +73,7 @@ public class ArvoreBinaria {
         }
     }
 
-    public int contarNos2(No raiz) {
+    public int contarNosFila(No raiz) {
         if (raiz == null) {
             return 0;
         }
@@ -91,6 +91,30 @@ public class ArvoreBinaria {
             }
             if (atual.right != null) {
                 fila.add(atual.right);
+            }
+        }
+
+        return contador;
+    }
+
+    public int contarNosPilha(No raiz) {
+        if (raiz == null) {
+            return 0;
+        }
+
+        Stack<No> fila = new Stack<>();
+        fila.push(raiz);
+        int contador = 0;
+
+        while (!fila.isEmpty()) {
+            No atual = fila.pop();
+            contador++;
+
+            if (atual.right != null) {
+                fila.add(atual.right);
+            }
+            if (atual.left != null) {
+                fila.add(atual.left);
             }
         }
 
