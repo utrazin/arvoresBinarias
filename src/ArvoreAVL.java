@@ -30,17 +30,17 @@ public class ArvoreAVL {
         return x;
     }
 
-    private No rotacaoEsquerda(No x) {
-        No y = x.right;
-        No T2 = y.left;
+    private No rotacaoEsquerda(No x1) {
+        No x2 = x1.right;
+        No T2 = x2.left;
 
-        y.left = x;
-        x.right = T2;
+        x2.left = x1;
+        x1.right = T2;
 
-        atualizarAltura(x);
-        atualizarAltura(y);
+        atualizarAltura(x1);
+        atualizarAltura(x2);
 
-        return y;
+        return x2;
     }
 
     public void inserir(String valor) {
@@ -73,5 +73,60 @@ public class ArvoreAVL {
         }
 
         return no;
+    }
+
+    public void excluir(String valor) {
+        raiz = excluirAVL(raiz, valor);
+    }
+
+    private No excluirAVL(No no, String valor) {
+        if (no == null) return null;
+
+        if (valor.compareTo(no.value) < 0) {
+            no.left = excluirAVL(no.left, valor);
+        } else if (valor.compareTo(no.value) > 0) {
+            no.right = excluirAVL(no.right, valor);
+        } else {
+            if (no.left == null || no.right == null) {
+                No temp = (no.left != null) ? no.left : no.right;
+                if (temp == null) {
+                    no = null;
+                } else {
+                    no = temp;
+                }
+            } else {
+                No sucessor = getMin(no.right);
+                no.value = sucessor.value;
+                no.right = excluirAVL(no.right, sucessor.value);
+            }
+        }
+
+        if (no == null) return null;
+
+        atualizarAltura(no);
+        int fb = fatorBalanceamento(no);
+
+        if (fb > 1 && fatorBalanceamento(no.left) >= 0)
+            return rotacaoDireita(no);
+
+        if (fb < -1 && fatorBalanceamento(no.right) <= 0)
+            return rotacaoEsquerda(no);
+
+        return no;
+    }
+
+    private No getMin(No no) {
+        while (no.left != null)
+            no = no.left;
+        return no;
+    }
+
+    // Implementei esse método para ter um retorno visual na classe Main
+    public void emOrdem(No no) {
+        if (no != null) {
+            emOrdem(no.left);
+            System.out.print(no.value + " ");
+            emOrdem(no.right);
+        }
     }
 }

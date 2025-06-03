@@ -1,9 +1,10 @@
 public class Main {
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
-        System.out.println("Arvóre Binária:");
+
+        System.out.println("Árvore Binária:");
         arvore.criarArvore();
-        System.out.println("\n" + arvore.contarNos(arvore.raiz) + " é o número de nós dessa árvore");
+        System.out.println(arvore.contarNos(arvore.raiz) + " é o número de nós dessa árvore");
         System.out.println("\n" + arvore.contarNosFolha(arvore.raiz) + " é o número de nós folha dessa árvore");
         System.out.println("\nA árvore em Pré Ordem:");
         arvore.preOrdem(arvore.raiz);
@@ -22,6 +23,32 @@ public class Main {
         arvore.emOrdem2(arvore.raiz);
         System.out.println("\nA árvore em Pós Ordem (Iterativo):");
         arvore.posOrdem2(arvore.raiz);
-        System.out.println("\nArvóre AVL:");
+
+        System.out.println();
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+
+        System.out.println("\nÁrvore AVL:");
+        ArvoreAVL arvoreAVL = new ArvoreAVL();
+        arvoreAVL.inserir("C");
+        arvoreAVL.inserir("B");
+        arvoreAVL.inserir("A");
+        arvoreAVL.inserir("D");
+        arvoreAVL.inserir("E");
+        arvoreAVL.inserir("F");
+
+        System.out.printf("Árvore AVL - Em Ordem:\n");
+        arvoreAVL.emOrdem(arvoreAVL.raiz);
+
+        System.out.println("\n\nExcluir valor 'B'");
+        arvoreAVL.excluir("B");
+
+        System.out.println("Árvore AVL depois da exlusão de 'B':");
+        arvoreAVL.emOrdem(arvoreAVL.raiz);
+
+        System.out.println("\n\nInserir valor 'G'");
+        arvoreAVL.inserir("G");
+
+        System.out.println("Árvore AVL depois da inserção do valor 'G':");
+        arvoreAVL.emOrdem(arvoreAVL.raiz);
     }
 }
