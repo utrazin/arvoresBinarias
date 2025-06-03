@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
+        System.out.println("Arvóre Binária:");
         arvore.criarArvore();
         System.out.println("\n" + arvore.contarNos(arvore.raiz) + " é o número de nós dessa árvore");
         System.out.println("\n" + arvore.contarNosFolha(arvore.raiz) + " é o número de nós folha dessa árvore");
@@ -21,5 +22,6 @@ public class Main {
         arvore.emOrdem2(arvore.raiz);
         System.out.println("\nA árvore em Pós Ordem (Iterativo):");
         arvore.posOrdem2(arvore.raiz);
+        System.out.println("\nArvóre AVL:");
     }
 }
