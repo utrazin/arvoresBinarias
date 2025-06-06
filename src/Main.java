@@ -36,19 +36,19 @@ public class Main {
         arvoreAVL.inserir("E");
         arvoreAVL.inserir("F");
 
-        System.out.printf("Árvore AVL - Em Ordem:\n");
-        arvoreAVL.emOrdem(arvoreAVL.raiz);
+        System.out.printf("Árvore AVL - Em Pré Ordem:\n");
+        arvoreAVL.exibirPreOrdem();
 
         System.out.println("\n\nExcluir valor 'B'");
         arvoreAVL.excluir("B");
 
         System.out.println("Árvore AVL depois da exlusão de 'B':");
-        arvoreAVL.emOrdem(arvoreAVL.raiz);
+        arvoreAVL.exibirPreOrdem();
 
         System.out.println("\n\nInserir valor 'G'");
         arvoreAVL.inserir("G");
 
         System.out.println("Árvore AVL depois da inserção do valor 'G':");
-        arvoreAVL.emOrdem(arvoreAVL.raiz);
+        arvoreAVL.exibirPreOrdem();
     }
 }

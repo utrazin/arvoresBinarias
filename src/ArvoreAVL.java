@@ -72,6 +72,16 @@ public class ArvoreAVL {
             return rotacaoEsquerda(no);
         }
 
+        if (fb > 1 && valor.compareTo(no.left.value) > 0) {
+            no.left = rotacaoEsquerda(no.left);
+            return rotacaoDireita(no);
+        }
+
+        if (fb < -1 && valor.compareTo(no.right.value) < 0) {
+            no.right = rotacaoDireita(no.right);
+            return rotacaoEsquerda(no);
+        }
+
         return no;
     }
 
@@ -106,11 +116,23 @@ public class ArvoreAVL {
         atualizarAltura(no);
         int fb = fatorBalanceamento(no);
 
-        if (fb > 1 && fatorBalanceamento(no.left) >= 0)
+        if (fb > 1 && fatorBalanceamento(no.left) >= 0) {
             return rotacaoDireita(no);
+        }
 
-        if (fb < -1 && fatorBalanceamento(no.right) <= 0)
+        if (fb < -1 && fatorBalanceamento(no.right) <= 0) {
             return rotacaoEsquerda(no);
+        }
+
+        if (fb > 1 && fatorBalanceamento(no.left) < 0) {
+            no.left = rotacaoEsquerda(no.left);
+            return rotacaoDireita(no);
+        }
+
+        if (fb < -1 && fatorBalanceamento(no.right) > 0) {
+            no.right = rotacaoDireita(no.right);
+            return rotacaoEsquerda(no);
+        }
 
         return no;
     }
@@ -121,12 +143,15 @@ public class ArvoreAVL {
         return no;
     }
 
-    // Implementei esse método para ter um retorno visual na classe Main
-    public void emOrdem(No no) {
+    public void preOrdem(No no) {
         if (no != null) {
-            emOrdem(no.left);
             System.out.print(no.value + " ");
-            emOrdem(no.right);
+            preOrdem(no.left);
+            preOrdem(no.right);
         }
+    }
+
+    public void exibirPreOrdem() {
+        preOrdem(raiz);
     }
 }
