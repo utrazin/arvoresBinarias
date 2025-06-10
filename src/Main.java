@@ -29,26 +29,35 @@ public class Main {
 
         System.out.println("\nÁrvore AVL:");
         ArvoreAVL arvoreAVL = new ArvoreAVL();
-        arvoreAVL.inserir("C");
-        arvoreAVL.inserir("B");
-        arvoreAVL.inserir("A");
-        arvoreAVL.inserir("D");
-        arvoreAVL.inserir("E");
-        arvoreAVL.inserir("F");
+        arvoreAVL.inserir(10);
+        arvoreAVL.inserir(20);
+        arvoreAVL.inserir(30);
+        arvoreAVL.inserir(40);
+        arvoreAVL.inserir(50);
+        arvoreAVL.inserir(25);
 
         System.out.printf("Árvore AVL - Em Pré Ordem:\n");
         arvoreAVL.exibirPreOrdem();
 
-        System.out.println("\n\nExcluir valor 'B'");
-        arvoreAVL.excluir("B");
+        System.out.printf("Árvore AVL - Em Ordem:\n");
+        arvoreAVL.exibirEmOrdem();
 
-        System.out.println("Árvore AVL depois da exlusão de 'B':");
+        System.out.println("\nExcluir valor '30'");
+        arvoreAVL.excluir(30);
+
+        System.out.println("Árvore AVL depois da exlusão de '30' em Pré Ordem:");
         arvoreAVL.exibirPreOrdem();
 
-        System.out.println("\n\nInserir valor 'G'");
-        arvoreAVL.inserir("G");
+        System.out.println("Árvore AVL depois da exlusão de '30' em Ordem:");
+        arvoreAVL.exibirEmOrdem();
 
-        System.out.println("Árvore AVL depois da inserção do valor 'G':");
+        System.out.println("\nInserir valor '70'");
+        arvoreAVL.inserir(70);
+
+        System.out.println("Árvore AVL depois da inserção do valor '70' em Pré Ordem:");
         arvoreAVL.exibirPreOrdem();
+
+        System.out.println("Árvore AVL depois da inserção do valor '70' em Ordem:");
+        arvoreAVL.exibirEmOrdem();
     }
 }
