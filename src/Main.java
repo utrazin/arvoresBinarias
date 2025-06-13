@@ -59,5 +59,18 @@ public class Main {
 
         System.out.println("Árvore AVL depois da inserção do valor '70' em Ordem:");
         arvoreAVL.exibirEmOrdem();
+
+        System.out.println();
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+
+        System.out.println("\nÁrvore Rubro Negra:");
+
+        ArvoreRubroNegra arvoreRubroNegra = new ArvoreRubroNegra();
+        arvoreRubroNegra.inserir(10);
+        arvoreRubroNegra.inserir(20);
+        arvoreRubroNegra.inserir(30);
+        arvoreRubroNegra.inserir(15);
+        arvoreRubroNegra.inserir(25);
+        arvoreRubroNegra.exibir();
     }
 }
