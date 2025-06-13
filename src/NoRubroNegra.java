@@ -2,13 +2,13 @@ enum Cor {
     Vermelho, Preto;
 }
 
-class NoRubroNegro {
-    int chave;
+class NoRubroNegra {
+    int valor;
     Cor cor;
-    No esquerda, direita, pai;
+    NoRubroNegra esquerda, direita, pai;
 
-    public NoRubroNegro(int chave) {
-        this.chave = chave;
+    public NoRubroNegra(int valor) {
+        this.valor = valor;
         this.cor = Cor.Vermelho;
         this.esquerda = null;
         this.direita = null;
