@@ -71,6 +71,6 @@ public class Main {
         arvoreRubroNegra.inserir(30);
         arvoreRubroNegra.inserir(15);
         arvoreRubroNegra.inserir(25);
-        arvoreRubroNegra.exibir();
+        arvoreRubroNegra.exibirEmOrdem();
     }
 }

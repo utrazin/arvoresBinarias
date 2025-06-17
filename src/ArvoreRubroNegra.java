@@ -5,6 +5,8 @@ public class ArvoreRubroNegra {
     public ArvoreRubroNegra() {
         NIL = new NoRubroNegra(0);
         NIL.cor = Cor.Preto;
+        NIL.esquerda = NIL;
+        NIL.direita = NIL;
         raiz = NIL;
     }
 
@@ -12,6 +14,7 @@ public class ArvoreRubroNegra {
         NoRubroNegra novo = new NoRubroNegra(valor);
         novo.esquerda = NIL;
         novo.direita = NIL;
+        novo.cor = Cor.Vermelho;
 
         NoRubroNegra y = null;
         NoRubroNegra x = raiz;
@@ -112,29 +115,119 @@ public class ArvoreRubroNegra {
         x.pai = y;
     }
 
-    public void excluir(int valor) {
-        raiz = excluirRubroNegra(raiz, valor);
+    private void transplante(NoRubroNegra u, NoRubroNegra v) {
+        if (u.pai == null) {
+            raiz = v;
+        } else if (u == u.pai.esquerda) {
+            u.pai.esquerda = v;
+        } else {
+            u.pai.direita = v;
+        }
+        v.pai = u.pai;
     }
 
-    private NoRubroNegra excluirRubroNegra(NoRubroNegra no, int valor) {
-        if (no == NIL) return no;
-
-        if (valor < no.valor) {
-            no.esquerda = excluirRubroNegra(no.esquerda, valor);
-        } else if (valor > no.valor) {
-            no.direita = excluirRubroNegra(no.direita, valor);
-        } else {
-            if (no.esquerda == NIL || no.direita == NIL) {
-                NoRubroNegra temp = (no.esquerda != NIL) ? no.esquerda : no.direita;
-                no = temp;
+    private void deleteFixup(NoRubroNegra x) {
+        while (x != raiz && x.cor == Cor.Preto) {
+            if (x == x.pai.esquerda) {
+                NoRubroNegra w = x.pai.direita;
+                if (w.cor == Cor.Vermelho) {
+                    w.cor = Cor.Preto;
+                    x.pai.cor = Cor.Vermelho;
+                    rotacaoEsquerda(x.pai);
+                    w = x.pai.direita;
+                }
+                if (w.esquerda.cor == Cor.Preto && w.direita.cor == Cor.Preto) {
+                    w.cor = Cor.Vermelho;
+                    x = x.pai;
+                } else {
+                    if (w.direita.cor == Cor.Preto) {
+                        w.esquerda.cor = Cor.Preto;
+                        w.cor = Cor.Vermelho;
+                        rotacaoDireita(w);
+                        w = x.pai.direita;
+                    }
+                    w.cor = x.pai.cor;
+                    x.pai.cor = Cor.Preto;
+                    w.direita.cor = Cor.Preto;
+                    rotacaoEsquerda(x.pai);
+                    x = raiz;
+                }
             } else {
-                NoRubroNegra sucessor = getMin(no.direita);
-                no.valor = sucessor.valor;
-                no.direita = excluirRubroNegra(no.direita, sucessor.valor);
+                NoRubroNegra w = x.pai.esquerda;
+                if (w.cor == Cor.Vermelho) {
+                    w.cor = Cor.Preto;
+                    x.pai.cor = Cor.Vermelho;
+                    rotacaoDireita(x.pai);
+                    w = x.pai.esquerda;
+                }
+                if (w.direita.cor == Cor.Preto && w.esquerda.cor == Cor.Preto) {
+                    w.cor = Cor.Vermelho;
+                    x = x.pai;
+                } else {
+                    if (w.esquerda.cor == Cor.Preto) {
+                        w.direita.cor = Cor.Preto;
+                        w.cor = Cor.Vermelho;
+                        rotacaoEsquerda(w);
+                        w = x.pai.esquerda;
+                    }
+                    w.cor = x.pai.cor;
+                    x.pai.cor = Cor.Preto;
+                    w.esquerda.cor = Cor.Preto;
+                    rotacaoDireita(x.pai);
+                    x = raiz;
+                }
             }
         }
+        x.cor = Cor.Preto;
+    }
 
-        return no;
+    public void excluir(int valor) {
+        NoRubroNegra z = raiz;
+        while (z != NIL) {
+            if (valor == z.valor) {
+                excluirRubroNegra(z);
+                return;
+            } else if (valor < z.valor) {
+                z = z.esquerda;
+            } else {
+                z = z.direita;
+            }
+        }
+    }
+
+    private void excluirRubroNegra(NoRubroNegra z) {
+        NoRubroNegra y = z;
+        Cor yOriginalCor = y.cor;
+        NoRubroNegra x;
+
+        if (z.esquerda == NIL) {
+            x = z.direita;
+            transplante(z, z.direita);
+        } else if (z.direita == NIL) {
+            x = z.esquerda;
+            transplante(z, z.esquerda);
+        } else {
+            y = getMin(z.direita);
+            yOriginalCor = y.cor;
+            x = y.direita;
+
+            if (y.pai == z) {
+                x.pai = y;
+            } else {
+                transplante(y, y.direita);
+                y.direita = z.direita;
+                y.direita.pai = y;
+            }
+
+            transplante(z, y);
+            y.esquerda = z.esquerda;
+            y.esquerda.pai = y;
+            y.cor = z.cor;
+        }
+
+        if (yOriginalCor == Cor.Preto) {
+            deleteFixup(x);
+        }
     }
 
     private NoRubroNegra getMin(NoRubroNegra no) {
@@ -152,7 +245,7 @@ public class ArvoreRubroNegra {
         }
     }
 
-    public void exibir() {
+    public void exibirEmOrdem() {
         emOrdem(raiz);
     }
 }
